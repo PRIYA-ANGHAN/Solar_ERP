@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "visit-.####",
  "creation": "2025-01-31 14:11:24.668692",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -75,7 +76,7 @@
   },
   {
    "fieldname": "is_same_name",
-   "fieldtype": "Date",
+   "fieldtype": "Select",
    "label": "Is Same Name",
    "options": "\nYes\nNo"
   },
@@ -130,10 +131,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-31 16:13:24.012777",
+ "modified": "2025-02-05 12:50:52.841775",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Site_Visit",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

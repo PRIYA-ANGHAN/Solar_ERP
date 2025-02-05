@@ -43,7 +43,7 @@
   },
   {
    "fieldname": "mobile_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Mobile No",
    "reqd": 1
@@ -70,7 +70,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-31 12:51:31.847511",
+ "modified": "2025-02-05 15:31:17.987170",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
