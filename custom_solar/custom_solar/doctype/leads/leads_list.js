@@ -30,7 +30,7 @@ frappe.listview_settings['Leads'] = {
             return doc.status !== 'closed'; 
         },
         get_label: function() {
-            return __('Create Site Visit');
+            return __('Site Visit');
         },
         get_description: function(doc) {
             return __("Create a Site Visit for Lead: {0}", [doc.full_name]);

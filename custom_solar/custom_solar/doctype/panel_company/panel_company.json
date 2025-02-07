@@ -24,22 +24,20 @@
    "label": "Company name"
   },
   {
-   "fieldname": "service",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Service",
-   "options": "Services",
-   "placeholder": "Select service"
-  },
-  {
    "fieldname": "company_logo",
    "fieldtype": "Attach Image",
    "label": "Company Logo"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Table MultiSelect",
+   "label": "service",
+   "options": "Multiselect"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-04 12:06:14.632026",
+ "modified": "2025-02-07 11:46:20.811556",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Panel Company",

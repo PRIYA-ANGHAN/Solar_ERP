@@ -8,10 +8,7 @@
  "field_order": [
   "add_watt_peaks_section",
   "watt_peakkw",
-  "panel_type",
-  "panel_price",
-  "same_price",
-  "total_price"
+  "panel_type"
  ],
  "fields": [
   {
@@ -29,27 +26,11 @@
    "fieldtype": "Link",
    "label": "Panel Type",
    "options": "Panel Type"
-  },
-  {
-   "fieldname": "panel_price",
-   "fieldtype": "Currency",
-   "label": "Panel Price"
-  },
-  {
-   "default": "0",
-   "fieldname": "same_price",
-   "fieldtype": "Check",
-   "label": "Same Price"
-  },
-  {
-   "fieldname": "total_price",
-   "fieldtype": "Currency",
-   "label": "Total Price"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-04 14:14:22.320049",
+ "modified": "2025-02-07 11:48:47.722104",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Watt Peaks",
