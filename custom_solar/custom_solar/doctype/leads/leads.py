@@ -3,18 +3,18 @@ from frappe.model.document import Document
 import re
  
 class Leads(Document):
-
+ 
     def validate(self):
         """Validate mobile number and email format."""
         self.validate_mobile_number()
         self.validate_email()
-
+ 
     def validate_mobile_number(self):
         """Validate mobile number format."""
         if self.mobile_no:
             # Trim leading and trailing spaces
             self.mobile_no = self.mobile_no.strip()
-
+ 
             # If the mobile number doesn't start with a country code (1-3 digits), add the default +91
             if not self.mobile_no.startswith(("+91", "+", "1", "44", "91", "0")):
                 # Prepend default +91 and remove leading zeros
@@ -22,14 +22,14 @@ class Leads(Document):
             else:
                 # If it has a country code, allow it and remove leading zeros
                 self.mobile_no = self.mobile_no.lstrip("0")
-
+ 
             # Regex pattern for the mobile number validation
             pattern = r'^\+?\d{1,3} \d{10}$'
-
+ 
             # If the mobile number doesn't match the expected pattern, raise an error
             if not re.match(pattern, self.mobile_no):
                 frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>")
-
+ 
     def validate_email(self):
         """Validate email format."""
         if self.email_id:
@@ -37,10 +37,10 @@ class Leads(Document):
             
             # Regular expression pattern for email validation
             email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-
+ 
             if not re.match(email_pattern, self.email_id):
                 frappe.throw("Invalid email format. Please enter a valid email address.")
-
+ 
     def on_update(self):
         """Ensure validation happens when the record is updated."""
         self.validate()  # Ensure validation happens on update
@@ -84,5 +84,7 @@ def get_site_visit_history(lead):
         return {"message": "No site visits found for this lead"}
     
     return visits
+ 
+ 
  
  

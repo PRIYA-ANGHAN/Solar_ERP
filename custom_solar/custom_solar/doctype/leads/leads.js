@@ -1,10 +1,19 @@
 frappe.ui.form.on('Leads', {
     refresh(frm) {
-        console.log(frm.timeline.wrapper.find('.timeline-item'))
-        add_custom_timeline_tabs(frm);
+        add_custom_timeline_tabs(frm); // Ensure tabs are added
+        load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
+    
+        // Set Site Visit as the default tab when opening a new Lead
+        $('#site-visit-tab').addClass('active');
+        $('#activity-tab').removeClass('active');
+    
+        // Show Site Visit content and hide Activity content
+        $('#site-visit-content').show();
+        frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
     },
- 
+    
     onload: function(frm) {
+ 
         if (!frm.doc.status) {
             frm.old_status = "";
         } else {
@@ -14,7 +23,7 @@ frappe.ui.form.on('Leads', {
     },
  
     status: function(frm) {
-        console.log(frm.timeline.timeline_items_wrapper);  // Debugging log
+        // console.log(frm.timeline.timeline_items_wrapper);  // Debugging log
  
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
@@ -64,7 +73,6 @@ frappe.ui.form.on('Leads', {
         }
     }
 });
- 
  
 function add_custom_timeline_tabs(frm) {
     if (!frm.custom_tabs_added) {
@@ -127,93 +135,103 @@ function load_site_visit_data(frm) {
     frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
  
     frm.timeline.timeline_items_wrapper.show(); // Ensure timeline is visible
+ 
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
         args: { lead: frm.doc.name },
         callback: function(response) {
             let visits = response.message || [];
             let content = '';
+ 
             visits.forEach((visit, index) => {
                 content += `
-<div class="site-visit-details card p-4 mb-4">
-<h5>Site Visit</h5>
+                    <div class="site-visit-details card p-4 mb-4">
+                        <h5>Site Visit</h5>
  
                         <!-- Row with 4 values -->
-<div class="row mb-3">
-<div class="col-md-3">
-<div><strong>Lead Owner:</strong></div>
-<div>${visit.lead_owner || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Cantilever Position:</strong></div>
-<div>${visit.cantilever_position || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Lead:</strong></div>
-<div>${visit.lead || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Shadow Object/Analysis:</strong></div>
-<div>${visit.shadow_object_analysis || '-'}</div>
-</div>
-</div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div><strong>Lead Owner:</strong></div>
+                                <div>${visit.lead_owner || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Cantilever Position:</strong></div>
+                                <div>${visit.cantilever_position || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Lead:</strong></div>
+                                <div>${visit.lead || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Shadow Object/Analysis:</strong></div>
+                                <div>${visit.shadow_object_analysis || '-'}</div>
+                            </div>
+                        </div>
  
                         <!-- Row with another 4 values -->
-<div class="row mb-3">
-<div class="col-md-3">
-<div><strong>Roof Type:</strong></div>
-<div>${visit.roof_type || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Structure Type:</strong></div>
-<div>${visit.structure_type || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Sanction Load:</strong></div>
-<div>${visit.sanction_load || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Is Same Name:</strong></div>
-<div>${visit.is_same_name || '-'}</div>
-</div>
-</div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div><strong>Roof Type:</strong></div>
+                                <div>${visit.roof_type || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Structure Type:</strong></div>
+                                <div>${visit.structure_type || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Sanction Load:</strong></div>
+                                <div>${visit.sanction_load || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Is Same Name:</strong></div>
+                                <div>${visit.is_same_name || '-'}</div>
+                            </div>
+                        </div>
  
                         <!-- Row with No. of Floors and others -->
-<div class="row mb-3">
-<div class="col-md-3">
-<div><strong>No. of Floors:</strong></div>
-<div>${visit.no_of_floor || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Final Note:</strong></div>
-<div>${visit.final_note || '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Remarks:</strong></div>
-<div>${visit.remarks || '-'}</div>
-</div>
-</div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div><strong>No. of Floors:</strong></div>
+                                <div>${visit.no_of_floor || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Final Note:</strong></div>
+                                <div>${visit.final_note || '-'}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Remarks:</strong></div>
+                                <div>${visit.remarks || '-'}</div>
+                            </div>
+                        </div>
  
                         <!-- Row with additional 4 values -->
-<div class="row mb-3">
-<div class="col-md-3">
-<div><strong>2D Diagram of Site:</strong></div>
-<div>${visit['2d_diagram_of_site'] ? `<a href="${visit['2d_diagram_of_site']}" target="_blank">View Diagram</a>` : '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Site Image:</strong></div>
-<div>${visit.site_image ? `<a href="${visit.site_image}" target="_blank">View Image</a>` : '-'}</div>
-</div>
-<div class="col-md-3">
-<div><strong>Site Video:</strong></div>
-<div>${visit.site_video ? `<a href="${visit.site_video}" target="_blank">View Video</a>` : '-'}</div>
-</div>
-</div>
-</div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div><strong>2D Diagram of Site:</strong></div>
+                                <div>
+                                    ${visit['2d_diagram_of_site'] ? `<a href="${visit['2d_diagram_of_site']}" target="_blank">View Diagram</a>` : '-'}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Site Image:</strong></div>
+                                <div>
+                                    ${visit.site_image ? `<a href="${visit.site_image}" target="_blank">View Image</a>` : '-'}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div><strong>Site Video:</strong></div>
+                                <div>
+                                    ${visit.site_video ? `<a href="${visit.site_video}" target="_blank">View Video</a>` : '-'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                `;
             });
+ 
             $('#site-visit-content').html(content); // Display Site Visit data
         }
     });
 }
-
+ 
+ 
