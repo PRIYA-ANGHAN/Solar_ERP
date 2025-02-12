@@ -16,8 +16,19 @@
   "status_section_section",
   "status",
   "section_break_6jud",
-  "section_break_b8lx",
-  "section_break_grrg"
+  "services",
+  "section_break_ahex",
+  "unit_rate",
+  "electricity_provider",
+  "column_break_taqo",
+  "electricity_bill",
+  "section_break_3gg2",
+  "required__kw",
+  "panel_tech",
+  "watt_peak",
+  "column_break_f0wo",
+  "panel_count",
+  "solar_company"
  ],
  "fields": [
   {
@@ -72,20 +83,81 @@
   },
   {
    "fieldname": "section_break_6jud",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Service Detail"
   },
   {
-   "fieldname": "section_break_b8lx",
-   "fieldtype": "Section Break"
+   "fieldname": "services",
+   "fieldtype": "Link",
+   "label": "Service",
+   "options": "Services"
   },
   {
-   "fieldname": "section_break_grrg",
-   "fieldtype": "Section Break"
+   "fieldname": "electricity_provider",
+   "fieldtype": "Link",
+   "label": "Electricity Provider",
+   "options": "Electricity Provider"
+  },
+  {
+   "fieldname": "electricity_bill",
+   "fieldtype": "Float",
+   "label": "Electricity Bill"
+  },
+  {
+   "fieldname": "required__kw",
+   "fieldtype": "Float",
+   "label": "Required  KW"
+  },
+  {
+   "fetch_from": "watt_peak.panel_tech",
+   "fieldname": "panel_tech",
+   "fieldtype": "Data",
+   "label": "Panel Tech"
+  },
+  {
+   "fieldname": "watt_peak",
+   "fieldtype": "Link",
+   "label": "Watt Peak",
+   "options": "Watt Peaks"
+  },
+  {
+   "fieldname": "panel_count",
+   "fieldtype": "Int",
+   "label": "Panel Count"
+  },
+  {
+   "fieldname": "solar_company",
+   "fieldtype": "Link",
+   "label": "Solar Company",
+   "options": "Panel Company"
+  },
+  {
+   "fieldname": "section_break_ahex",
+   "fieldtype": "Section Break",
+   "label": "Location & Electricity Details"
+  },
+  {
+   "fieldname": "column_break_taqo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_3gg2",
+   "fieldtype": "Section Break",
+   "label": "Solar Requirements"
+  },
+  {
+   "fieldname": "column_break_f0wo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit_rate",
+   "fieldtype": "Currency",
+   "label": "Unit Rate"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-06 17:05:24.471029",
+ "modified": "2025-02-12 11:38:29.652944",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

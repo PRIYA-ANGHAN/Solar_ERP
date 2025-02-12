@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class PanelType(Document):
+class Panelpricing(Document):
 	pass

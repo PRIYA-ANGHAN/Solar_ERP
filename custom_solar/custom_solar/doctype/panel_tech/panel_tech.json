@@ -68,7 +68,7 @@
  "modified": "2025-02-04 12:07:16.737074",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Panel Type",
+ "name": "Panel Tech",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

@@ -1,40 +1,33 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "Peak-.####",
- "creation": "2025-02-03 16:13:33.279461",
+ "autoname": "format:{electricity_provide}",
+ "creation": "2025-02-12 09:59:36.838821",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "add_watt_peaks_section",
-  "watt_peakkw",
-  "panel_tech"
+  "section_break_xakp",
+  "electricity_provide"
  ],
  "fields": [
   {
-   "fieldname": "add_watt_peaks_section",
+   "fieldname": "section_break_xakp",
    "fieldtype": "Section Break",
-   "label": "Add Watt Peaks"
+   "label": "Electricity Provider"
   },
   {
-   "fieldname": "watt_peakkw",
-   "fieldtype": "Float",
-   "label": "Watt Peak(KW)"
-  },
-  {
-   "fieldname": "panel_tech",
-   "fieldtype": "Link",
-   "label": "Panel Tech",
-   "options": "Panel Tech"
+   "fieldname": "electricity_provide",
+   "fieldtype": "Data",
+   "label": "Electricity Provide"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-12 11:41:28.266909",
+ "modified": "2025-02-12 10:07:04.539738",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Watt Peaks",
- "naming_rule": "Expression (old style)",
+ "name": "Electricity Provider",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
