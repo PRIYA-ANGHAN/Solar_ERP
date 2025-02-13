@@ -2,13 +2,16 @@
 import frappe
 from frappe.model.document import Document
 import re
- 
+import math
+
 class Leads(Document):
  
     def validate(self):
         """Validate mobile number and email format."""
         self.validate_mobile_number()
         self.validate_email()
+        self.calculate_required_kw()
+        self.calculate_panel_count()
  
     def validate_mobile_number(self):
         """Validate mobile number format."""
@@ -30,7 +33,29 @@ class Leads(Document):
             # If the mobile number doesn't match the expected pattern, raise an error
             if not re.match(pattern, self.mobile_no):
                 frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>")
- 
+
+    def calculate_required_kw(self):
+        """Calculate Required kW based on Electricity Bill, Unit Rate, and Billing Cycle."""
+        if self.electricity_bill and self.unit_rate and self.billing_cycle:
+            billing_cycle_factor = 120 if self.billing_cycle == "1 Month" else 240
+            try:
+                self.required__kw = self.electricity_bill / (billing_cycle_factor * self.unit_rate)
+            except ZeroDivisionError:
+                frappe.throw("Unit Rate cannot be zero.")
+
+    
+
+    def calculate_panel_count(self):
+        """Calculate Panel Count when Required kW and Watt Peak are provided."""
+        if self.required__kw and self.watt_peakkw:
+            try:
+                panel_count = (self.required__kw * 1000) / self.watt_peakkw
+                self.panel_count = math.ceil(panel_count)  # Always round up
+            except ZeroDivisionError:
+                frappe.throw("Watt Peak value cannot be zero.")
+        
+            frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
+
     def validate_email(self):
         """Validate email format."""
         if self.email_id:
@@ -138,5 +163,3 @@ def get_site_visit_history(lead):
         return {"message": "No site visits found for this lead"}
     
     return visits
- 
- 

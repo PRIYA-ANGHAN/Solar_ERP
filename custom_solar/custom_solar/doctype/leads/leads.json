@@ -16,19 +16,22 @@
   "status_section_section",
   "status",
   "section_break_6jud",
-  "services",
+  "company_name",
+  "service",
   "section_break_ahex",
-  "unit_rate",
   "electricity_provider",
+  "unit_rate",
+  "billing_cycle",
   "column_break_taqo",
   "electricity_bill",
-  "section_break_3gg2",
   "required__kw",
-  "panel_tech",
-  "watt_peak",
+  "section_break_3gg2",
+  "watt_peakkw",
   "column_break_f0wo",
   "panel_count",
-  "solar_company"
+  "section_break_djju",
+  "panel_pricing",
+  "price"
  ],
  "fields": [
   {
@@ -87,12 +90,6 @@
    "label": "Service Detail"
   },
   {
-   "fieldname": "services",
-   "fieldtype": "Link",
-   "label": "Service",
-   "options": "Services"
-  },
-  {
    "fieldname": "electricity_provider",
    "fieldtype": "Link",
    "label": "Electricity Provider",
@@ -109,27 +106,9 @@
    "label": "Required  KW"
   },
   {
-   "fetch_from": "watt_peak.panel_tech",
-   "fieldname": "panel_tech",
-   "fieldtype": "Data",
-   "label": "Panel Tech"
-  },
-  {
-   "fieldname": "watt_peak",
-   "fieldtype": "Link",
-   "label": "Watt Peak",
-   "options": "Watt Peaks"
-  },
-  {
    "fieldname": "panel_count",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Panel Count"
-  },
-  {
-   "fieldname": "solar_company",
-   "fieldtype": "Link",
-   "label": "Solar Company",
-   "options": "Panel Company"
   },
   {
    "fieldname": "section_break_ahex",
@@ -153,11 +132,49 @@
    "fieldname": "unit_rate",
    "fieldtype": "Currency",
    "label": "Unit Rate"
+  },
+  {
+   "fetch_from": "panel_pricing.price",
+   "fieldname": "price",
+   "fieldtype": "Data",
+   "label": "price"
+  },
+  {
+   "fieldname": "panel_pricing",
+   "fieldtype": "Link",
+   "label": "Panel pricing",
+   "options": "Panel pricing"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company name",
+   "options": "Panel Company"
+  },
+  {
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Float",
+   "label": "Watt Peak"
+  },
+  {
+   "fieldname": "section_break_djju",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Data",
+   "label": "Service"
+  },
+  {
+   "fieldname": "billing_cycle",
+   "fieldtype": "Select",
+   "label": "Billing Cycle",
+   "options": "1 Month\n2 Month"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-12 11:38:29.652944",
+ "modified": "2025-02-13 16:30:17.304678",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

@@ -1,7 +1,9 @@
 {
+ "_comments": "[]",
+ "_liked_by": "[]",
  "actions": [],
  "allow_rename": 1,
- "autoname": "Peak-.####",
+ "autoname": "format:{watt_peakkw} Wp  {panel_tech}",
  "creation": "2025-02-03 16:13:33.279461",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -17,24 +19,24 @@
    "label": "Add Watt Peaks"
   },
   {
-   "fieldname": "watt_peakkw",
-   "fieldtype": "Float",
-   "label": "Watt Peak(KW)"
-  },
-  {
    "fieldname": "panel_tech",
    "fieldtype": "Link",
    "label": "Panel Tech",
    "options": "Panel Tech"
+  },
+  {
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Float",
+   "label": "Watt Peak(Wp)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-12 11:41:28.266909",
+ "modified": "2025-02-13 11:04:55.379035",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Watt Peaks",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

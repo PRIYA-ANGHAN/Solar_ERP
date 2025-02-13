@@ -7,7 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "add_panel_type_section",
-  "panel_type",
+  "panel_tech",
   "description",
   "column_break_aypi",
   "residential",
@@ -19,12 +19,7 @@
   {
    "fieldname": "add_panel_type_section",
    "fieldtype": "Section Break",
-   "label": "Add Panel Type"
-  },
-  {
-   "fieldname": "panel_type",
-   "fieldtype": "Data",
-   "label": "Solar Panel Type"
+   "label": "Add Panel Tech"
   },
   {
    "fieldname": "description",
@@ -61,11 +56,16 @@
    "fieldname": "ground_mounted",
    "fieldtype": "Check",
    "label": "Ground Mounted"
+  },
+  {
+   "fieldname": "panel_tech",
+   "fieldtype": "Data",
+   "label": "Solar Panel Tech"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-04 12:07:16.737074",
+ "modified": "2025-02-13 09:27:52.978596",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Panel Tech",
