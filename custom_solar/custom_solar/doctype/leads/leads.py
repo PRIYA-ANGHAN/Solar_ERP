@@ -12,6 +12,7 @@ class Leads(Document):
         self.validate_email()
         self.calculate_required_kw()
         self.calculate_panel_count()
+        self.calculate_total_price()
  
     def validate_mobile_number(self):
         """Validate mobile number format."""
@@ -56,6 +57,17 @@ class Leads(Document):
         
             frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
 
+
+    def calculate_total_price(self):
+        """Calculate Total Price based on Panel Count and Per Panel Price."""
+        if self.panel_count and self.per_panel_price:
+            try:
+                self.total_price = self.panel_count * self.per_panel_price
+            except Exception as e:
+                frappe.throw(f"Error calculating Total Price: {str(e)}")
+
+
+
     def validate_email(self):
         """Validate email format."""
         if self.email_id:
@@ -66,6 +78,8 @@ class Leads(Document):
  
             if not re.match(email_pattern, self.email_id):
                 frappe.throw("Invalid email format. Please enter a valid email address.")
+
+    
  
     def on_update(self):
         """Ensure validation happens when the record is updated."""
@@ -112,7 +126,19 @@ class Leads(Document):
                         'email_id': self.email_id,
                         'mobile_no': self.mobile_no,
                         'date_sgma': self.date_sgma,
-                        'status': 'Closed',
+                        'status': 'Closed', 
+                        "company_name": self.company_name,
+                        "service": self.service,
+                        "electricity_provider": self.electricity_provider,
+                        "unit_rate": self.unit_rate,
+                        "required__kw": self.required__kw,
+                        "electricity_bill": self.electricity_bill,
+                        "billing_cycle": self.billing_cycle,
+                        "panel_details": self.panel_details,
+                        "watt_peakkw": self.watt_peakkw,
+                        "per_panel_price": self.per_panel_price,
+                        "panel_count": self.panel_count,
+                        "total_price": self.total_price
                     })
  
                     opportunity.insert(ignore_permissions=True)

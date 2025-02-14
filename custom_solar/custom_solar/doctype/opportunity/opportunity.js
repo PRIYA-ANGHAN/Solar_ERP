@@ -168,35 +168,33 @@ function load_site_visit_data(frm) {
     });
 }
 
-
 function load_activity_data(frm) {
-    // Load Activity content for the current lead
-    frm.timeline.timeline_items_wrapper.hide(); // Hide Activity content
-    frm.timeline.wrapper.find('.timeline-item').hide(); // Hide the timeline items
-    frm.timeline.timeline_items_wrapper.show(); // Show timeline
+    // Hide Activity content initially
+    frm.timeline.timeline_items_wrapper.hide();
+    frm.timeline.wrapper.find('.timeline-item').hide();
+    frm.timeline.timeline_items_wrapper.show();
 
-    // Get the current status from the form (this may need to be adjusted if your status fields are named differently)
-    let old_status = frm.doc.status;
-    let new_status = "Follow Up"; // Replace with a valid status
-    let comment = "Viewing activity logs"; // Optional comment
+    // let old_status = frm.doc.status;  // Get the current status before change
+    // let new_status = frm.doc.status;  // Get the actual changed status
+    // let comment = "Viewing activity logs"; // Optional comment
 
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.log_status_change',
         args: {
-            docname: frm.doc.lead_id,  // Lead ID
-            old_status: old_status,  // Current Status
-            new_status: new_status,  // New status to log
-            comment: comment  // Optional comment
+            docname: frm.doc.lead_id,  
+            old_status: old_status,  
+            new_status: new_status,  // Use actual status
+            comment: comment  
         },
         callback: function(response) {
             let activities = response.message || [];
             let content = '';
 
-            activities.forEach((activity, index) => {
+            activities.forEach((activity) => {
                 content += `<div class="activity-log">${activity.content || 'No content available.'}</div>`;
             });
 
-            $('#activity-content').html(content);  // Display activity logs
+            $('#activity-content').html(content);
         }
     });
 }

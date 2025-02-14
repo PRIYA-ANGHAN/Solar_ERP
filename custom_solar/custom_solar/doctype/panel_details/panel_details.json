@@ -9,7 +9,7 @@
   "section_break_xpvk",
   "company_name",
   "watt_peaks",
-  "price",
+  "per_panel_price",
   "watt_peakkw"
  ],
  "fields": [
@@ -25,12 +25,6 @@
    "options": "Watt Peaks"
   },
   {
-   "fieldname": "price",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "price"
-  },
-  {
    "fieldname": "company_name",
    "fieldtype": "Link",
    "label": "Company name",
@@ -42,14 +36,20 @@
    "fieldtype": "Float",
    "label": "Watt Peak(Wp)",
    "read_only": 1
+  },
+  {
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Per Panel price"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-14 09:39:27.070356",
+ "modified": "2025-02-14 10:33:35.738350",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Panel pricing",
+ "name": "Panel details",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

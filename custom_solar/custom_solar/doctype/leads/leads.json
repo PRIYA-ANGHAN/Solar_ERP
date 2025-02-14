@@ -17,21 +17,23 @@
   "status",
   "section_break_6jud",
   "company_name",
+  "column_break_lz9j",
   "service",
   "section_break_ahex",
   "electricity_provider",
   "unit_rate",
-  "billing_cycle",
+  "required__kw",
   "column_break_taqo",
   "electricity_bill",
-  "required__kw",
+  "billing_cycle",
   "section_break_3gg2",
+  "panel_details",
   "watt_peakkw",
   "column_break_f0wo",
+  "per_panel_price",
   "panel_count",
   "section_break_djju",
-  "panel_pricing",
-  "price"
+  "total_price"
  ],
  "fields": [
   {
@@ -122,7 +124,7 @@
   {
    "fieldname": "section_break_3gg2",
    "fieldtype": "Section Break",
-   "label": "Solar Requirements"
+   "label": "Solar Requirements and price"
   },
   {
    "fieldname": "column_break_f0wo",
@@ -134,32 +136,21 @@
    "label": "Unit Rate"
   },
   {
-   "fetch_from": "panel_pricing.price",
-   "fieldname": "price",
-   "fieldtype": "Data",
-   "label": "price"
-  },
-  {
-   "fieldname": "panel_pricing",
-   "fieldtype": "Link",
-   "label": "Panel pricing",
-   "options": "Panel pricing"
-  },
-  {
    "fieldname": "company_name",
    "fieldtype": "Link",
    "label": "Company name",
    "options": "Panel Company"
   },
   {
-   "fetch_from": "panel_pricing.watt_peakkw",
+   "fetch_from": "panel_details.watt_peakkw",
    "fieldname": "watt_peakkw",
    "fieldtype": "Float",
    "label": "Watt Peak"
   },
   {
    "fieldname": "section_break_djju",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Final Price"
   },
   {
    "fieldname": "service",
@@ -171,11 +162,32 @@
    "fieldtype": "Select",
    "label": "Billing Cycle",
    "options": "1 Month\n2 Month"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Data",
+   "label": "Total Price"
+  },
+  {
+   "fieldname": "panel_details",
+   "fieldtype": "Link",
+   "label": "Panel Details",
+   "options": "Panel details"
+  },
+  {
+   "fetch_from": "panel_details.per_panel_price",
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "label": "Per Panel price"
+  },
+  {
+   "fieldname": "column_break_lz9j",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-14 09:41:54.981207",
+ "modified": "2025-02-14 15:01:37.182482",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

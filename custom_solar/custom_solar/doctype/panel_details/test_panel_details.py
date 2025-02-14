@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestPanelpricing(FrappeTestCase):
+class TestPaneldetails(FrappeTestCase):
 	pass
