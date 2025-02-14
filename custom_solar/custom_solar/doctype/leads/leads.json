@@ -152,6 +152,7 @@
    "options": "Panel Company"
   },
   {
+   "fetch_from": "panel_pricing.watt_peakkw",
    "fieldname": "watt_peakkw",
    "fieldtype": "Float",
    "label": "Watt Peak"
@@ -174,7 +175,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-13 16:30:17.304678",
+ "modified": "2025-02-14 09:41:54.981207",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

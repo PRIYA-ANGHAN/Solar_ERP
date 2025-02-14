@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{watt_peaks}",
+ "autoname": "format:{company_name} - {watt_peaks}",
  "creation": "2025-02-12 17:16:45.953943",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -9,21 +9,14 @@
   "section_break_xpvk",
   "company_name",
   "watt_peaks",
-  "watt_peakkw",
-  "panel_tech",
-  "price"
+  "price",
+  "watt_peakkw"
  ],
  "fields": [
   {
    "fieldname": "section_break_xpvk",
    "fieldtype": "Section Break",
    "label": "Add Panel Price"
-  },
-  {
-   "fetch_from": "watt_peaks.panel_tech",
-   "fieldname": "panel_tech",
-   "fieldtype": "Data",
-   "label": "Panel Tech"
   },
   {
    "fieldname": "watt_peaks",
@@ -38,21 +31,22 @@
    "label": "price"
   },
   {
-   "fetch_from": "watt_peaks.watt_peakkw",
-   "fieldname": "watt_peakkw",
-   "fieldtype": "Float",
-   "label": "Watt Peak(Wp)"
-  },
-  {
    "fieldname": "company_name",
    "fieldtype": "Link",
    "label": "Company name",
    "options": "Panel Company"
+  },
+  {
+   "fetch_from": "watt_peaks.watt_peakkw",
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Float",
+   "label": "Watt Peak(Wp)",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-13 11:34:15.628945",
+ "modified": "2025-02-14 09:39:27.070356",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Panel pricing",
