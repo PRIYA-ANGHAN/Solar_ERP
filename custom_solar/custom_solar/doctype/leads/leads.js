@@ -40,24 +40,33 @@ frappe.ui.form.on('Leads', {
         console.log("Initial Status:", frm.old_status);
     },
     
-    company_name: function(frm) {
-        if (frm.doc.company_name) {
-            frappe.call({
-                method: "frappe.client.get_value",
-                args: {
-                    doctype: "Panel Company",
-                    filters: { company_name: frm.doc.company_name },
-                    fieldname: "service"
-                },
-                callback: function(response) {
-                    if (response.message) {
-                        frm.set_value("service", response.message.service || "");
-                    }
-                }
-            });
-        }
-    }, 
-
+    // company_name: function(frm) {
+    //     if (frm.doc.company_name) {
+    //         frappe.call({
+    //             method: "custom_solar.custom_solar.doctype.leads.leads.get_services",
+    //             args: {
+    //                 company_name: frm.doc.company_name
+    //             },
+    //             callback: function(r) {
+    //                 if (r.message) {
+    //                     // Set the fetched services and make the field read-only
+    //                     frm.set_value("service", r.message.map(service => service.service).join(", "));
+    //                     frm.set_df_property("service", "read_only", 1);
+    //                 } else {
+    //                     frm.set_value("service", "");
+    //                     frappe.msgprint("No services found for the selected company.");
+    //                 }
+    //             }
+    //         });
+    //     } else {
+    //         frm.set_value("service", "");
+    //     }
+    // }
+    
+    refresh: function(frm) {
+        // Make the service field read-only initially
+        frm.set_df_property("service", "read_only", 1);
+    },
 
     company_name: function(frm) {
         if (frm.doc.company_name) {
@@ -67,22 +76,34 @@ frappe.ui.form.on('Leads', {
                     company_name: frm.doc.company_name
                 },
                 callback: function(r) {
-                    if (r.message) {
-                        // Set the fetched services and make the field read-only
-                        frm.set_value("service", r.message.map(service => service.service).join(", "));
+                    if (r.message && r.message.length > 0) {
+                        // Clear existing entries in the service child table
+                        frm.clear_table("service");
+
+                        // Add fetched services automatically
+                        r.message.forEach(service => {
+                            let row = frm.add_child("service");
+                            row.service = service.service;
+                        });
+
+                        // Refresh the child table field
+                        frm.refresh_field("service");
+
+                        // Make the service field read-only
                         frm.set_df_property("service", "read_only", 1);
                     } else {
-                        frm.set_value("service", "");
+                        frm.clear_table("service");
+                        frm.refresh_field("service");
                         frappe.msgprint("No services found for the selected company.");
                     }
                 }
             });
         } else {
-            frm.set_value("service", "");
+            // If no company is selected, clear the service field
+            frm.clear_table("service");
+            frm.refresh_field("service");
         }
-    }
-    ,
-
+    },
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
