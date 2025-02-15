@@ -14,7 +14,26 @@
   "mobile_no",
   "date_sgma",
   "status_section_section",
-  "status"
+  "status",
+  "section_break_6jud",
+  "company_name",
+  "column_break_lz9j",
+  "service",
+  "section_break_ahex",
+  "electricity_provider",
+  "unit_rate",
+  "required__kw",
+  "column_break_taqo",
+  "electricity_bill",
+  "billing_cycle",
+  "section_break_3gg2",
+  "panel_details",
+  "watt_peakkw",
+  "column_break_f0wo",
+  "per_panel_price",
+  "panel_count",
+  "section_break_djju",
+  "total_price"
  ],
  "fields": [
   {
@@ -43,7 +62,7 @@
   },
   {
    "fieldname": "mobile_no",
-   "fieldtype": "Phone",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Mobile No",
    "reqd": 1
@@ -66,11 +85,111 @@
    "in_list_view": 1,
    "label": "Status",
    "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
+  },
+  {
+   "fieldname": "section_break_6jud",
+   "fieldtype": "Section Break",
+   "label": "Service Detail"
+  },
+  {
+   "fieldname": "electricity_provider",
+   "fieldtype": "Link",
+   "label": "Electricity Provider",
+   "options": "Electricity Provider"
+  },
+  {
+   "fieldname": "electricity_bill",
+   "fieldtype": "Float",
+   "label": "Electricity Bill"
+  },
+  {
+   "fieldname": "required__kw",
+   "fieldtype": "Float",
+   "label": "Required  KW"
+  },
+  {
+   "fieldname": "panel_count",
+   "fieldtype": "Float",
+   "label": "Panel Count"
+  },
+  {
+   "fieldname": "section_break_ahex",
+   "fieldtype": "Section Break",
+   "label": "Location & Electricity Details"
+  },
+  {
+   "fieldname": "column_break_taqo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_3gg2",
+   "fieldtype": "Section Break",
+   "label": "Solar Requirements and price"
+  },
+  {
+   "fieldname": "column_break_f0wo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit_rate",
+   "fieldtype": "Currency",
+   "label": "Unit Rate"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company name",
+   "options": "Panel Company"
+  },
+  {
+   "fetch_from": "panel_details.watt_peakkw",
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Float",
+   "label": "Watt Peak"
+  },
+  {
+   "fieldname": "section_break_djju",
+   "fieldtype": "Section Break",
+   "label": "Final Price"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Table MultiSelect",
+   "label": "Service",
+   "options": "Multiselect",
+   "read_only": 1
+  },
+  {
+   "fieldname": "billing_cycle",
+   "fieldtype": "Select",
+   "label": "Billing Cycle",
+   "options": "1 Month\n2 Month"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Data",
+   "label": "Total Price"
+  },
+  {
+   "fieldname": "panel_details",
+   "fieldtype": "Link",
+   "label": "Panel Details",
+   "options": "Panel details"
+  },
+  {
+   "fetch_from": "panel_details.per_panel_price",
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "label": "Per Panel price"
+  },
+  {
+   "fieldname": "column_break_lz9j",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-31 12:51:31.847511",
+ "modified": "2025-02-15 11:50:27.110305",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
