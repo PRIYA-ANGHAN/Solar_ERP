@@ -189,3 +189,18 @@ def get_site_visit_history(lead):
         return {"message": "No site visits found for this lead"}
     
     return visits
+
+
+
+@frappe.whitelist()
+def get_services(company_name):
+    services = []
+    
+    # Fetch Panel Company document
+    panel_company = frappe.get_doc("Panel Company", company_name)
+
+    # Check if services exist in the child table (Multiselect)
+    if panel_company.services:
+        services = [{"service": row.service} for row in panel_company.services]
+    
+    return services if services else []

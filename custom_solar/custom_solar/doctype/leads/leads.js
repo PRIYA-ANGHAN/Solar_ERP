@@ -39,6 +39,49 @@ frappe.ui.form.on('Leads', {
         }
         console.log("Initial Status:", frm.old_status);
     },
+    
+    company_name: function(frm) {
+        if (frm.doc.company_name) {
+            frappe.call({
+                method: "frappe.client.get_value",
+                args: {
+                    doctype: "Panel Company",
+                    filters: { company_name: frm.doc.company_name },
+                    fieldname: "service"
+                },
+                callback: function(response) {
+                    if (response.message) {
+                        frm.set_value("service", response.message.service || "");
+                    }
+                }
+            });
+        }
+    }, 
+
+
+    company_name: function(frm) {
+        if (frm.doc.company_name) {
+            frappe.call({
+                method: "custom_solar.custom_solar.doctype.leads.leads.get_services",
+                args: {
+                    company_name: frm.doc.company_name
+                },
+                callback: function(r) {
+                    if (r.message) {
+                        // Set the fetched services and make the field read-only
+                        frm.set_value("service", r.message.map(service => service.service).join(", "));
+                        frm.set_df_property("service", "read_only", 1);
+                    } else {
+                        frm.set_value("service", "");
+                        frappe.msgprint("No services found for the selected company.");
+                    }
+                }
+            });
+        } else {
+            frm.set_value("service", "");
+        }
+    }
+    ,
 
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
@@ -88,6 +131,7 @@ frappe.ui.form.on('Leads', {
             console.error("frm.doc or status field is undefined.");
         }
     }
+    
 });
 
 
@@ -165,6 +209,7 @@ function add_custom_timeline_tabs(frm) {
         frm.custom_tabs_added = true;
     }
 }
+
  
 function load_site_visit_data(frm) {
  
