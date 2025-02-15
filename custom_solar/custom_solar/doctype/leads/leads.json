@@ -156,7 +156,8 @@
    "fieldname": "service",
    "fieldtype": "Table MultiSelect",
    "label": "Service",
-   "options": "Multiselect"
+   "options": "Multiselect",
+   "read_only": 1
   },
   {
    "fieldname": "billing_cycle",
@@ -188,7 +189,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-14 17:53:07.293696",
+ "modified": "2025-02-15 11:50:27.110305",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

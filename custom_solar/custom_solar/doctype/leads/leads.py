@@ -151,6 +151,7 @@ class Leads(Document):
                     frappe.throw(f"Failed to create opportunity: {str(e)}")
  
 @frappe.whitelist()
+
 def log_status_change(docname, old_status, new_status, comment):
     """
     Log the status change along with the comment and update the timeline of the lead.
@@ -192,15 +193,30 @@ def get_site_visit_history(lead):
 
 
 
+# @frappe.whitelist()
+# def get_services(company_name):
+#     services = []
+    
+#     # Fetch Panel Company document
+#     panel_company = frappe.get_doc("Panel Company", company_name)
+
+#     # Check if services exist in the child table (Multiselect)
+#     if panel_company.services:
+#         services = [{"service": row.service} for row in panel_company.services]
+    
+#     return services if services else []
+
+
+
 @frappe.whitelist()
 def get_services(company_name):
-    services = []
-    
-    # Fetch Panel Company document
+    service = []
+
+    # Fetch the Panel Company document
     panel_company = frappe.get_doc("Panel Company", company_name)
 
-    # Check if services exist in the child table (Multiselect)
-    if panel_company.services:
-        services = [{"service": row.service} for row in panel_company.services]
-    
-    return services if services else []
+    # Ensure services exist and iterate through the child table correctly
+    if panel_company.get("service"):
+        service = [{"service": row.service} for row in panel_company.get("service")]
+
+    return service if service else []
